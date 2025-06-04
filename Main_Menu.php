@@ -129,6 +129,11 @@ $result = mysqli_query($conn, "SELECT * FROM notes");
             const response = await fetch('create_note.php', { method: 'POST' });
             if (!response.ok) throw new Error('Failed to create note');
             const data = await response.json();
+
+            if (boxes.length >= 8) {
+                alert('Maximum number of notes (8) reached!');
+                return;
+            }
             
             const box = document.createElement('div');
             box.className = 'note-box';
